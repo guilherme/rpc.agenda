@@ -34,7 +34,7 @@ agenda_1(char *host)
 	if (result_1 == (int *) NULL) {
 		clnt_perror (clnt, "call failed");
 	}
-	int opcao = 0
+	int opcao = 0;
 	while(opcao != -1) {
 		switch(opcao) {
 			case  1:
