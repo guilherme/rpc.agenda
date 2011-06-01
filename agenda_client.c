@@ -34,21 +34,41 @@ agenda_1(char *host)
 	if (result_1 == (int *) NULL) {
 		clnt_perror (clnt, "call failed");
 	}
-	result_2 = insere_1(&insere_1_arg, clnt);
-	if (result_2 == (int *) NULL) {
-		clnt_perror (clnt, "call failed");
-	}
-	result_3 = remove_1(&remove_1_arg, clnt);
-	if (result_3 == (int *) NULL) {
-		clnt_perror (clnt, "call failed");
-	}
-	result_4 = busca_1(&busca_1_arg, clnt);
-	if (result_4 == (registro *) NULL) {
-		clnt_perror (clnt, "call failed");
-	}
-	result_5 = altera_1(&altera_1_arg, clnt);
-	if (result_5 == (int *) NULL) {
-		clnt_perror (clnt, "call failed");
+	int opcao = 0
+	while(opcao != -1) {
+		switch(opcao) {
+			case  1:
+				result_2 = insere_1(&insere_1_arg, clnt);
+				if (result_2 == (int *) NULL) {
+					clnt_perror (clnt, "call failed");
+				}
+			case  2:
+				result_3 = remove_1(&remove_1_arg, clnt);
+				if (result_3 == (int *) NULL) {
+					clnt_perror (clnt, "call failed");
+				}
+			case  3:
+				result_4 = busca_1(&busca_1_arg, clnt);
+				if (result_4 == (registro *) NULL) {
+					clnt_perror (clnt, "call failed");
+				}
+			case  4:
+				result_5 = altera_1(&altera_1_arg, clnt);
+				if (result_5 == (int *) NULL) {
+					clnt_perror (clnt, "call failed");
+				}
+			case  5:
+				printf("Menu\n");
+				printf(" 1 - Insere registro\n");
+				printf(" 2 - Remove registro\n");
+				printf(" 3 - Busca registro\n");
+				printf(" 4 - Altera Registro\n");
+				printf(" 5 - Menu\n");
+				printf(" -1 - Sair\n");
+			default:
+				opcao = 5;
+
+		}
 	}
 #ifndef	DEBUG
 	clnt_destroy (clnt);
