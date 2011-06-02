@@ -5,13 +5,13 @@
 imprimeRegistro(reg)
 registro reg;
 { 
-  printf("======================================================");
+  printf("======================================================\n");
   printf("Contato:\n ");
   printf("Nome: %s\n",reg.nome);
   printf("Email: %s\n",reg.email);
   printf("Telefone Residencial: %s\n",reg.telefone_residencial);
   printf("Telefone Celular: %s\n",reg.telefone_celular);
-  printf("======================================================");
+  printf("======================================================\n");
 };
 
 void
@@ -25,7 +25,7 @@ agenda_1(char *host)
   int  *result_3;
   registro  remove_1_arg;
   registro  *result_4;
-  char * busca_1_arg;
+  char * busca_1_arg = malloc(sizeof(char)*100);
   int  *result_5;
   struct registro  altera_1_arg;
   int resultado;
