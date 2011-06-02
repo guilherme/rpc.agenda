@@ -12,82 +12,111 @@
 void
 agenda_1(char *host)
 {
-	CLIENT *clnt;
-	int  *result_1;
-	char *inicializar_1_arg;
-	int  *result_2;
-	registro  insere_1_arg;
-	int  *result_3;
-	registro  remove_1_arg;
-	registro  *result_4;
-	char * busca_1_arg;
-	int  *result_5;
-	struct registro  altera_1_arg;
+  CLIENT *clnt;
+  int  *result_1;
+  char *inicializar_1_arg;
+  int  *result_2;
+  registro  insere_1_arg;
+  int  *result_3;
+  registro  remove_1_arg;
+  registro  *result_4;
+  char * busca_1_arg;
+  int  *result_5;
+  struct registro  altera_1_arg;
+  int resultado;
 
 #ifndef	DEBUG
-	clnt = clnt_create (host, AGENDA, AGENDAVERS, "udp");
-	if (clnt == NULL) {
-		clnt_pcreateerror (host);
-		exit (1);
-	}
+  clnt = clnt_create (host, AGENDA, AGENDAVERS, "udp");
+  if (clnt == NULL) {
+    clnt_pcreateerror (host);
+    exit (1);
+  }
 #endif	/* DEBUG */
 
-	result_1 = inicializar_1((void*)&inicializar_1_arg, clnt);
-	if (result_1 == (int *) NULL) {
-		clnt_perror (clnt, "call failed");
-	}
-	int opcao = 5;
-	while(opcao != -1) {
-		switch(opcao) {
-			case 1:
-       				printf("Digite o nome do contato:\n");
-       				scanf("%s",insere_1_arg.nome);
-       				printf("Digite o email do contato:\n");
-       				scanf("%s",insere_1_arg.email);
-       				printf("Digite o telefone residencial do contato:\n");
-       				scanf("%s",insere_1_arg.telefone_residencial);
-       				printf("Digite o telefone celular do contato:\n");
-       				scanf("%s",insere_1_arg.telefone_celular);
-				result_2 = insere_1(&insere_1_arg, clnt); 
-				if (result_2 == (int *) NULL) {
-					clnt_perror (clnt, "call failed");
-				}
-			case 2:
-				printf("Digite o email do contato:\n");
-       				scanf("%s",insere_1_arg.email);
-				result_3 = remove_1(&remove_1_arg, clnt);
-				if (result_3 == (int *) NULL) {
-					clnt_perror (clnt, "call failed");
-				}
-			case 3:
-				printf("Digite o email do contato:\n");
-       				scanf("%s",insere_1_arg.email);
-				result_4 = busca_1(&busca_1_arg, clnt);
-				if (result_4 == (registro *) NULL) {
-					clnt_perror (clnt, "call failed");
-				}
-			case 4:
-				printf("Digite o email do contato:\n");
-       				scanf("%s",insere_1_arg.email);
-				result_5 = altera_1(&altera_1_arg, clnt);
-				if (result_5 == (int *) NULL) {
-					clnt_perror (clnt, "call failed");
-				}
-			case 5:
-				printf("Menu\n");
-				printf(" 1 - Insere registro\n");
-				printf(" 2 - Remove registro\n");
-				printf(" 3 - Busca registro\n");
-				printf(" 4 - Altera Registro\n");
-				printf(" 5 - Menu\n");
-				printf(" -1 - Sair\n");
-			default:
-				opcao = 5;
-		}
-	    scanf("%d",&opcao);
-	}
+  result_1 = inicializar_1((void*)&inicializar_1_arg, clnt);
+  if (result_1 == (int *) NULL) {
+    clnt_perror (clnt, "call failed");
+  }
+  int opcao = 5;
+  while(opcao != -1) {
+    switch(opcao) {
+    case 1:
+      printf("Digite o nome do contato:\n");
+      scanf("%s",insere_1_arg.nome);
+      printf("Digite o email do contato:\n");
+      scanf("%s",insere_1_arg.email);
+      printf("Digite o telefone residencial do contato:\n");
+      scanf("%s",insere_1_arg.telefone_residencial);
+      printf("Digite o telefone celular do contato:\n");
+      scanf("%s",insere_1_arg.telefone_celular);
+      result_2 = insere_1(&insere_1_arg, clnt); 
+      if(result_2 == (int *)NULL) {
+          clnt_perror (clnt, "call failed");
+      } else {
+        resultado = *result_2;
+        switch(resultado)  {
+          case 0:
+            printf("Erro ao inserir contato\n");
+          case 1:
+            printf("Contato removido com sucesso!\n");
+        };
+      }
+    case 2:
+      printf("Digite o email do contato:\n");
+      scanf("%s",remove_1_arg.email);
+      result_3 = remove_1(&remove_1_arg, clnt);
+      if(result_3 == (int *)NULL) {
+          clnt_perror (clnt, "call failed");
+      } else {
+        resultado = *result_3;
+        switch(resultado)  {
+          case -1:
+            printf("Contato inexistente!\n");
+          case 0:
+            printf("Erro ao remover contato\n");
+          case 1:
+            printf("Contato removido com sucesso!\n");
+        };
+      }
+    case 3:
+      printf("Digite o email do contato:\n");
+      scanf("%s",busca_1_arg);
+      result_4 = busca_1(&busca_1_arg, clnt);
+      if (result_4 == (registro *) NULL) {
+        clnt_perror (clnt, "call failed");
+      }
+    case 4:
+      printf("Digite o email do contato:\n");
+      scanf("%s",altera_1_arg.email);
+      result_5 = altera_1(&altera_1_arg, clnt);
+      if(result_5 == (int *)NULL) {
+          clnt_perror (clnt, "call failed");
+      } else {
+        resultado = *result_5;
+        switch(resultado)  {
+          case -1:
+            printf("Contato inexistente!\n");
+          case 0:
+            printf("Erro ao remover contato\n");
+          case 1:
+            printf("Contato removido com sucesso!\n");
+        };
+      }
+    case 5:
+      printf("Menu\n");
+      printf(" 1 - Insere registro\n");
+      printf(" 2 - Remove registro\n");
+      printf(" 3 - Busca registro\n");
+      printf(" 4 - Altera Registro\n");
+      printf(" 5 - Menu\n");
+      printf(" -1 - Sair\n");
+    default:
+      opcao = 5;
+    }
+    scanf("%d",&opcao);
+  }
 #ifndef	DEBUG
-	clnt_destroy (clnt);
+  clnt_destroy (clnt);
 #endif	 /* DEBUG */
 }
 
@@ -95,13 +124,13 @@ agenda_1(char *host)
 int
 main (int argc, char *argv[])
 {
-	char *host;
+  char *host;
 
-	if (argc < 2) {
-		printf ("usage: %s server_host\n", argv[0]);
-		exit (1);
-	}
-	host = argv[1];
-	agenda_1 (host);
-exit (0);
+  if (argc < 2) {
+    printf ("usage: %s server_host\n", argv[0]);
+    exit (1);
+  }
+  host = argv[1];
+  agenda_1 (host);
+  exit (0);
 }
