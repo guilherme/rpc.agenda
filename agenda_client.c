@@ -99,8 +99,14 @@ agenda_1(char *host)
         imprimeRegistro(*result_4);
       }
     case 4:
-      printf("Digite o email do contato:\n");
+      printf("Digite o email do contato(sera utilizado como referencia):\n");
       scanf("%s",altera_1_arg.email);
+      printf("Digite o nome do contato:\n");
+      scanf("%s",altera_1_arg.nome);
+      printf("Digite o telefone residencial do contato:\n");
+      scanf("%s",altera_1_arg.telefone_residencial);
+      printf("Digite o telefone celular do contato:\n");
+      scanf("%s",altera_1_arg.telefone_celular);
       result_5 = altera_1(&altera_1_arg, clnt);
       if(result_5 == (int *)NULL) {
           clnt_perror (clnt, "call failed");
@@ -110,9 +116,9 @@ agenda_1(char *host)
           case -1:
             printf("Contato inexistente!\n");
           case 0:
-            printf("Erro ao remover contato\n");
+            printf("Erro ao alterar contato\n");
           case 1:
-            printf("Contato removido com sucesso!\n");
+            printf("Contato alterar com sucesso!\n");
         };
       }
     case 5:
