@@ -91,6 +91,9 @@ agenda_1(char *host)
           case 1:
             printf("Contato removido com sucesso!\n");
 	    break;
+	  case 2:
+            printf("[SERVIDOR] Erro ao conectar ao banco de dados!\n");
+	    break;
         };
       }
       opcao = 5;
@@ -125,10 +128,13 @@ agenda_1(char *host)
             printf("Contato inexistente!\n");
 	    break;
           case 0:
-            printf("Erro ao alterar contato\n");
+            printf("Erro ao alterado contato\n");
 	    break;
           case 1:
-            printf("Contato alterar com sucesso!\n");
+            printf("Contato alterado com sucesso!\n");
+	    break;
+	  case 2:
+            printf("[SERVIDOR] Erro ao conectar ao banco de dados!\n");
 	    break;
         };
       }
