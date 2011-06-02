@@ -23,14 +23,14 @@ insere_1_svc(registro *argp, struct svc_req *rqstp)
   PGconn     *conn;
   PGresult   *res;
   const char *insert_query = malloc(sizeof(registro));
-  sprintf(insert_query,"INSERT INTO registros VALUES('%s', '%s', '%s','%s');",*argp.nome,*argp.email,*argp.telefone_celular,*argp_telefone_residencial));
+  sprintf(insert_query,"INSERT INTO registros VALUES('%s', '%s', '%s','%s');",argp->nome,argp->email,argp->telefone_celular,argp->telefone_residencial);
 
   /*
    * If the user supplies a parameter on the command line, use it as the
    * conninfo string; otherwise default to setting dbname=postgres and using
    * environment variables or defaults for all other connection parameters.
    */
-  conninfo = "username = root dbname = agenda_telefonica";
+  conninfo = "user = 'guilherme' dbname = 'agenda_telefonica'";
   /* Make a connection to the database */
   conn = PQconnectdb(conninfo);
 
@@ -42,7 +42,7 @@ insere_1_svc(registro *argp, struct svc_req *rqstp)
       return &result;
   }
 
-  res = PQexec(conn, query);
+  res = PQexec(conn, insert_query);
   if (PQresultStatus(res) != PGRES_COMMAND_OK)
   {
       fprintf(stderr, "INSERT command failed: %s", PQerrorMessage(conn));

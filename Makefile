@@ -20,8 +20,8 @@ OBJECTS_CLNT = $(SOURCES_CLNT.c:%.c=%.o) $(TARGETS_CLNT.c:%.c=%.o)
 OBJECTS_SVC = $(SOURCES_SVC.c:%.c=%.o) $(TARGETS_SVC.c:%.c=%.o)
 # Compiler flags 
 
-CFLAGS += -g 
-LDLIBS += -lnsl
+CFLAGS += -g -I/usr/include/postgresql -L/usr/lib/postgresql/8.4/lib/
+LDLIBS += -lnsl -lpq
 RPCGENFLAGS = 
 
 # Targets 
