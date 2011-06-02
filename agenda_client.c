@@ -4,6 +4,8 @@
  * as a guideline for developing your own functions.
  */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "agenda.h"
 
 
@@ -34,30 +36,39 @@ agenda_1(char *host)
 	if (result_1 == (int *) NULL) {
 		clnt_perror (clnt, "call failed");
 	}
-	int opcao = 0;
+	int opcao = 5;
 	while(opcao != -1) {
 		switch(opcao) {
-			case  1:
-				result_2 = insere_1(&insere_1_arg, clnt);
+			case 1:
+        printf("Digite o nome do contato:\n");
+        scanf("%s",insere_1_arg.nome);
+        printf("Digite o email do contato:\n");
+        scanf("%s",insere_1_arg.email);
+        printf("Digite o telefone residencial do contato:\n");
+        scanf("%s",insere_1_arg.telefone_residencial);
+        printf("Digite o telefone celular do contato:\n");
+        scanf("%s",insere_1_arg.telefone_celular);
+				result_2 = insere_1(&insere_1_arg, clnt); 
 				if (result_2 == (int *) NULL) {
 					clnt_perror (clnt, "call failed");
 				}
-			case  2:
+        printf("%d",*result_2);
+			case 2:
 				result_3 = remove_1(&remove_1_arg, clnt);
 				if (result_3 == (int *) NULL) {
 					clnt_perror (clnt, "call failed");
 				}
-			case  3:
+			case 3:
 				result_4 = busca_1(&busca_1_arg, clnt);
 				if (result_4 == (registro *) NULL) {
 					clnt_perror (clnt, "call failed");
 				}
-			case  4:
+			case 4:
 				result_5 = altera_1(&altera_1_arg, clnt);
 				if (result_5 == (int *) NULL) {
 					clnt_perror (clnt, "call failed");
 				}
-			case  5:
+			case 5:
 				printf("Menu\n");
 				printf(" 1 - Insere registro\n");
 				printf(" 2 - Remove registro\n");
@@ -67,8 +78,8 @@ agenda_1(char *host)
 				printf(" -1 - Sair\n");
 			default:
 				opcao = 5;
-
 		}
+    scanf("%d",&opcao);
 	}
 #ifndef	DEBUG
 	clnt_destroy (clnt);
