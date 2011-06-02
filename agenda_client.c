@@ -8,6 +8,17 @@
 #include <stdlib.h>
 #include "agenda.h"
 
+imprimeRegistro(reg)
+registro reg;
+{ 
+  printf("======================================================");
+  printf("Contato:\n ");
+  printf("Nome: %s\n",reg.nome);
+  printf("Email: %s\n",reg.email);
+  printf("Telefone Residencial: %s\n",reg.telefone_residencial);
+  printf("Telefone Celular: %s\n",reg.telefone_celular);
+  printf("======================================================");
+};
 
 void
 agenda_1(char *host)
@@ -84,6 +95,8 @@ agenda_1(char *host)
       result_4 = busca_1(&busca_1_arg, clnt);
       if (result_4 == (registro *) NULL) {
         clnt_perror (clnt, "call failed");
+      } else {
+        imprimeRegistro(*result_4);
       }
     case 4:
       printf("Digite o email do contato:\n");
