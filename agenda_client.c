@@ -71,6 +71,7 @@ agenda_1(char *host)
 	    break;
         };
       }
+      opcao = 5;
       break;
     case 2:
       printf("Digite o email do contato:\n");
@@ -83,12 +84,16 @@ agenda_1(char *host)
         switch(resultado)  {
           case -1:
             printf("Contato inexistente!\n");
+	    break;
           case 0:
             printf("Erro ao remover contato\n");
+	    break;
           case 1:
             printf("Contato removido com sucesso!\n");
+	    break;
         };
       }
+      opcao = 5;
       break;
     case 3:
       printf("Digite o email do contato:\n");
@@ -99,6 +104,7 @@ agenda_1(char *host)
       } else {
         imprimeRegistro(*result_4);
       }
+      opcao = 5;
       break;
     case 4:
       printf("Digite o email do contato(sera utilizado como referencia):\n");
@@ -117,12 +123,16 @@ agenda_1(char *host)
         switch(resultado)  {
           case -1:
             printf("Contato inexistente!\n");
+	    break;
           case 0:
             printf("Erro ao alterar contato\n");
+	    break;
           case 1:
             printf("Contato alterar com sucesso!\n");
+	    break;
         };
       }
+      opcao = 5;
       break;
     case 5:
       printf("Menu\n");
@@ -132,12 +142,12 @@ agenda_1(char *host)
       printf(" 4 - Altera Registro\n");
       printf(" 5 - Menu\n");
       printf(" -1 - Sair\n");
+      scanf("%d",&opcao);
       break;
     default:
       opcao = 5;
       break;
     }
-    scanf("%d",&opcao);
   }
 #ifndef	DEBUG
   clnt_destroy (clnt);
