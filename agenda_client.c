@@ -64,6 +64,8 @@ agenda_1(char *host)
             printf("Erro ao inserir contato\n");
           case 1:
             printf("Contato removido com sucesso!\n");
+          case 2:
+            printf("[SERVIDOR] Erro ao conectar ao banco de dados!\n");
         };
       }
     case 2:
